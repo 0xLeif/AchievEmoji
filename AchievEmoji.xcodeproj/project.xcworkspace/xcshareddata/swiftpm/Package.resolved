@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "EKit",
+        "repositoryURL": "https://github.com/0xLeif/EKit",
+        "state": {
+          "branch": null,
+          "revision": "646553d3f5e043542f1eeebd755b42cf9dd0d378",
+          "version": "0.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
