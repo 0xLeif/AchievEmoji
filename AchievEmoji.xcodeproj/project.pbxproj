@@ -15,6 +15,10 @@
 		2983615025DC7E1E00707FF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2983613A25DC7E1E00707FF6 /* Assets.xcassets */; };
 		2983616425DC7E8000707FF6 /* EKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2983616325DC7E8000707FF6 /* EKit */; };
 		2983616925DC7E9800707FF6 /* EKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2983616825DC7E9800707FF6 /* EKit */; };
+		29DAE04825DCAA2B00A66C9F /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DAE04725DCAA2B00A66C9F /* EmojiView.swift */; };
+		29DAE04925DCAA2B00A66C9F /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DAE04725DCAA2B00A66C9F /* EmojiView.swift */; };
+		29DAE05025DCAD1C00A66C9F /* Combino in Frameworks */ = {isa = PBXBuildFile; productRef = 29DAE04F25DCAD1C00A66C9F /* Combino */; };
+		29DAE05425DCAD3A00A66C9F /* Combino in Frameworks */ = {isa = PBXBuildFile; productRef = 29DAE05325DCAD3A00A66C9F /* Combino */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,7 @@
 		2983614725DC7E1E00707FF6 /* AchievEmoji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AchievEmoji.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2983614925DC7E1E00707FF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2983614A25DC7E1E00707FF6 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		29DAE04725DCAA2B00A66C9F /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29DAE05025DCAD1C00A66C9F /* Combino in Frameworks */,
 				2983616425DC7E8000707FF6 /* EKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -41,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29DAE05425DCAD3A00A66C9F /* Combino in Frameworks */,
 				2983616925DC7E9800707FF6 /* EKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,6 +69,7 @@
 		2983613725DC7E1D00707FF6 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				29DAE04725DCAA2B00A66C9F /* EmojiView.swift */,
 				2983613825DC7E1D00707FF6 /* AchievEmojiApp.swift */,
 				2983613925DC7E1D00707FF6 /* ContentView.swift */,
 				2983613A25DC7E1E00707FF6 /* Assets.xcassets */,
@@ -120,6 +128,7 @@
 			name = "AchievEmoji (iOS)";
 			packageProductDependencies = (
 				2983616325DC7E8000707FF6 /* EKit */,
+				29DAE04F25DCAD1C00A66C9F /* Combino */,
 			);
 			productName = "AchievEmoji (iOS)";
 			productReference = 2983613F25DC7E1E00707FF6 /* AchievEmoji.app */;
@@ -140,6 +149,7 @@
 			name = "AchievEmoji (macOS)";
 			packageProductDependencies = (
 				2983616825DC7E9800707FF6 /* EKit */,
+				29DAE05325DCAD3A00A66C9F /* Combino */,
 			);
 			productName = "AchievEmoji (macOS)";
 			productReference = 2983614725DC7E1E00707FF6 /* AchievEmoji.app */;
@@ -173,6 +183,7 @@
 			mainGroup = 2983613225DC7E1D00707FF6;
 			packageReferences = (
 				2983616225DC7E8000707FF6 /* XCRemoteSwiftPackageReference "EKit" */,
+				29DAE04E25DCAD1C00A66C9F /* XCRemoteSwiftPackageReference "Combino" */,
 			);
 			productRefGroup = 2983614025DC7E1E00707FF6 /* Products */;
 			projectDirPath = "";
@@ -210,6 +221,7 @@
 			files = (
 				2983614D25DC7E1E00707FF6 /* ContentView.swift in Sources */,
 				2983614B25DC7E1E00707FF6 /* AchievEmojiApp.swift in Sources */,
+				29DAE04825DCAA2B00A66C9F /* EmojiView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +231,7 @@
 			files = (
 				2983614E25DC7E1E00707FF6 /* ContentView.swift in Sources */,
 				2983614C25DC7E1E00707FF6 /* AchievEmojiApp.swift in Sources */,
+				29DAE04925DCAA2B00A66C9F /* EmojiView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +483,14 @@
 				minimumVersion = 0.1.0;
 			};
 		};
+		29DAE04E25DCAD1C00A66C9F /* XCRemoteSwiftPackageReference "Combino" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/0xLeif/Combino.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -482,6 +503,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2983616225DC7E8000707FF6 /* XCRemoteSwiftPackageReference "EKit" */;
 			productName = EKit;
+		};
+		29DAE04F25DCAD1C00A66C9F /* Combino */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29DAE04E25DCAD1C00A66C9F /* XCRemoteSwiftPackageReference "Combino" */;
+			productName = Combino;
+		};
+		29DAE05325DCAD3A00A66C9F /* Combino */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29DAE04E25DCAD1C00A66C9F /* XCRemoteSwiftPackageReference "Combino" */;
+			productName = Combino;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
