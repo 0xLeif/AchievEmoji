@@ -8,6 +8,8 @@
 import Foundation
 
 import SwiftUI
+import Combine
+import Combino
 
 import EKit
 
@@ -26,12 +28,19 @@ struct ContentView: View {
     
     @State private var isShowingCopyMessage = false
     
+    @State private var task: AnyCancellable?
+    
     private var shownEmojis: [E] {
         E.allCases
             .filter { usedEmojis[$0] != nil }
             .sorted(by: { lhs,  rhs in
-                (usedEmojis[lhs] ?? -1) < (usedEmojis[rhs] ?? -1)
+                (usedEmojis[lhs] ?? -1) > (usedEmojis[rhs] ?? -1)
             })
+    }
+    
+    private var unusedEmojis: [E] {
+        E.allCases
+            .filter { usedEmojis[$0] == nil }
     }
     
     private var randomlySearchedEmoji: E? {
@@ -43,29 +52,37 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
+            
             VStack {
                 ScrollView {
-                    LazyVStack {
-                        ForEach(shownEmojis, id: \.self) { e in
-                            HStack {
-                                Text(e.rawValue)
-                                Text("\(String(describing: e))")
-                                Spacer()
-                                Text("\(usedEmojis[e] ?? 0)")
+                    Spacer()
+                        .frame(width: 16, height: 16, alignment: .center)
+                    if !usedEmojis.isEmpty {
+                        Text("Used Emojis")
+                        
+                        LazyVStack {
+                            ForEach(shownEmojis, id: \.self) { e in
+                                EmojiView(emoji: e, count: usedEmojis[e] ?? 0)
                             }
-                            .foregroundColor((usedEmojis[e] ?? 0) == 0 ? .gray : .primary)
-                            .padding([.leading, .trailing], 4)
-                            .padding([.bottom, .top], 2)
                         }
                     }
+                    
+                    Text("Unused Emojis")
+                    
+                    LazyVStack {
+                        ForEach(unusedEmojis, id: \.self) { e in
+                            EmojiView(emoji: e, count: 0)
+                        }
+                    }
+                    
                 }
                 
                 VStack {
                     TextField("Search",
                               text: $searchText,
                               onCommit:  {
-                        loadRandomEmoji()
-                    })
+                                loadRandomEmoji()
+                              })
                     
                     Button("Find") {
                         loadRandomEmoji()
@@ -81,14 +98,7 @@ struct ContentView: View {
                     .foregroundColor(Color.black)
                     .padding()
                     .background(
-                        Color.secondary
-                    )
-                    .cornerRadius(8)
-                    .padding(32)
-                    .background(
-                        Color.secondary
-                            .opacity(0.314)
-                            .blur(radius: 4)
+                        Color.white
                     )
                     .cornerRadius(8)
             }
@@ -111,16 +121,22 @@ struct ContentView: View {
         }
         
         #if os(macOS)
-            NSPasteboard.general.clearContents()
-            NSPasteboard.general.setString(randomlySearchedEmoji.rawValue, forType: .string)
+        NSPasteboard.general.clearContents()
+        NSPasteboard.general.setString(randomlySearchedEmoji.rawValue, forType: .string)
         #else
-            UIPasteboard.general.string = randomlySearchedEmoji.rawValue
+        UIPasteboard.general.string = randomlySearchedEmoji.rawValue
         #endif
         
+        task?.cancel()
         isShowingCopyMessage = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            isShowingCopyMessage = false
-        }
+        task = Combino.do(withDelay: 1, work: { })
+            .sink(
+                .success {
+                    DispatchQueue.main.async {
+                        isShowingCopyMessage = false
+                    }
+                }
+            )
     }
 }
 
